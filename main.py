@@ -5,8 +5,15 @@
 
 PO = True
 
+#
+# test.data has ASCII chars 7 bits long. To decode, set DATA_FILE to
+# "test.data", bit_size to 7 and do not reverse bits.
+#
+
+DATA_FILE = "cover.data"
+
 def get_file_lines():
-    fh = open("cover.data", "r")
+    fh = open(DATA_FILE, "r")
     lines = []
     for line in fh:
         lines.append(line)
@@ -14,7 +21,7 @@ def get_file_lines():
     return lines
 
 def get_file_string(reverse=False):
-    fh = open("cover.data", "r")
+    fh = open(DATA_FILE, "r")
     lines = []
     for line in fh:
         lines.append(line.strip())
@@ -23,7 +30,7 @@ def get_file_string(reverse=False):
     return "".join(lines)
 
 def get_letter(binary):
-    binary = binary.replace("?", "1") # TODO: switch
+    binary = binary.replace("?", "0") # TODO: switch
     intval = int(binary, 2)
     char = chr(intval)
     if PO: print "Binary:", binary, "Int:", intval, "Char:", char
@@ -62,4 +69,4 @@ for start in range(0, 6):
     print_lines(get_lines(), start, 8)
 """
 
-print_string(get_file_string(reverse=False), 6)
+print_string(get_file_string(reverse=False), 7)
